@@ -98,14 +98,18 @@ if __name__ == "__main__":
              docContain = json.loads(posts_string)
              
              #docContain[:docContain.index("section1")]
+             #here parsing of document should be done to extract textual content and also content with existing audiodecription
 
         else:
              print('Failed to fetch posts from API.')
 
         if posts:
-            print("Here should be all to API for Audio transcription of text")
             #print(docContain)
             text_to_speech_file("Witaj świecie, może razem uda się ulepszyć Polską platformę edukacyjną!")
             #text_to_speech_file([posts_string])
-
+            #here sholuld be request to the ZPE platform for edit in current webpage (dynamic edit by adding audio container)
+            #here should be POST of the mp3 to the server 
+            #here should be the status of POST operation with any expects or error info when it will be unsuccessful
             
+
+
