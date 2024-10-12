@@ -7,7 +7,7 @@
 
 The demo was deployed on the ZPE platform, but due to time constraints and very limited information about posting media to the platform, I was unable to complete it. However, I am confident that it is possible to accomplish.
 
-Another part that requires a change is the `voiceId`. For now, the demo is using "Damian PL", and also model was changed to eleven_multilingual_v2 for Polish language generation.
+For now the demo is using "Damian PL", and also model was changed to eleven_multilingual_v2 for Polish language generation. Other models can be taken into consideration, because some people with hearing problems hear in different ways (some of them have problems with high pitched tones, some of them with low ones).
 
 The project's objective is to dynamically create a widget or audio player iframe.  
 The Proof of Concept (PoC) was created in Python, but I know it can be done using a JavaScript function added to the platform (although I haven't figured out how to implement it yet). The platform is capable of operating at the API level. Unfortunately, the only information I have about the API was gathered through experimenting with API calls.
