@@ -1,6 +1,7 @@
 import os
 import uuid
-
+import requests
+import json
 from dotenv import load_dotenv
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
@@ -15,6 +16,33 @@ if not ELEVENLABS_API_KEY:
 client = ElevenLabs(
     api_key=ELEVENLABS_API_KEY,
 )
+
+import requests
+
+def get_posts():
+    url = 'https://zpe.gov.pl/api/v1/document/D13MQOOrz/content'
+
+    try:
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            posts = response.json()
+            return posts
+        else:
+            print('Error:Cannot fetch the data', response.status_code)
+            return None
+    except requests.exceptions.RequestException as e:
+        print('Error:', e)
+        return None
+    
+
+        
+
+
+if __name__ == '__main__':
+    main()
+
+
 def text_to_speech_file(text: str) -> str:
     """
     Converts text to speech and saves the output as an MP3 file.
@@ -60,4 +88,13 @@ def text_to_speech_file(text: str) -> str:
 
 
 if __name__ == "__main__":
-    text_to_speech_file("Witaj świecie!! To mój pierwszy raz kiedy mówię po polsku.")
+        posts = get_posts()
+
+        if posts:
+             posts_string = json.dumps(posts)
+             print('First Post Title:', posts_string)
+        else:
+             print('Failed to fetch posts from API.')
+
+        if posts:
+            text_to_speech_file("Witaj świecie!! To mój pierwszy raz kiedy mówię po polsku.")
