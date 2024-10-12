@@ -17,7 +17,7 @@ client = ElevenLabs(
     api_key=ELEVENLABS_API_KEY,
 )
 
-import requests
+
 
 def get_posts():
     url = 'https://zpe.gov.pl/api/v1/document/D13MQOOrz/content'
@@ -36,11 +36,13 @@ def get_posts():
         return None
     
 
-        
+def main() -> int:
+       return 0        
 
 
 if __name__ == '__main__':
     main()
+
 
 
 def text_to_speech_file(text: str) -> str:
@@ -59,11 +61,11 @@ def text_to_speech_file(text: str) -> str:
     """
     # Calling the text_to_speech conversion API with detailed parameters
     response = client.text_to_speech.convert(
-        voice_id="pNInz6obpgDQGcFmaJgB",  # Adam pre-made voice
+        voice_id="S1JKkpuAQNsowB8ZvKRO",  # voice of Damian PL
         optimize_streaming_latency="0",
         output_format="mp3_22050_32",
         text=text,
-        model_id="eleven_turbo_v2",  # use the turbo model for low latency, for other languages use the `eleven_multilingual_v2`
+        model_id="eleven_multilingual_v2",  # use the turbo model for low latency, for other languages use the `eleven_multilingual_v2`
         voice_settings=VoiceSettings(
             stability=0.0,
             similarity_boost=1.0,
@@ -92,9 +94,16 @@ if __name__ == "__main__":
 
         if posts:
              posts_string = json.dumps(posts)
-             print('First Post Title:', posts_string)
+             print(posts_string[2])
+             docContain = json.loads(posts_string)
+             
+             #docContain[:docContain.index("section1")]
+
         else:
              print('Failed to fetch posts from API.')
 
         if posts:
-            text_to_speech_file("Witaj świecie!! To mój pierwszy raz kiedy mówię po polsku.")
+            print("Here should be all to API for Audio transcription of text")
+            #print(docContain)
+            text_to_speech_file("Witaj świecie, może razem uda się ulepszyć Polską platformę edukacyjną!")
+            #text_to_speech_file([posts_string])
